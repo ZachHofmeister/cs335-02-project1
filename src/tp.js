@@ -5,7 +5,7 @@ const ANTLEFT = 3;
 
 // different variations of cellColors you can play with.
 // the first one is mentioned in the project pdf, where the professor covers how the TP multi-color ant works.
-const cellColors = [["#5555cc",0],["#55cc55",1],["#cc5555",1]];
+const cellColors = [["#5555cc",0],["#55cc55",1],["#cc5555",1]]; //B (right), G (left), R(left)
 //const cellColors = [["#5555cc",0],["#55cc55",0],["#cc5555",1]];
 //const cellColors = [["#5555cc",1],["#55cc55",0],["#cc5555",0]];
 //const cellColors = [["#5555cc",1],["#55cc55",1],["#cc5555",0]]; // similar to langton's ant "traffic"
@@ -13,10 +13,10 @@ const cellColors = [["#5555cc",0],["#55cc55",1],["#cc5555",1]];
 
 var g_canvas = { cell_size:10, wid:90, hgt:90 }; // JS Global var, w canvas size info.
 var g_frame_cnt = 0; // Setup a P5 display-frame counter, to do anim
-var g_frame_mod = 1; // Update every 'mod' frames.
+var g_frame_mod = 10; // Update every 'mod' frames.
 var g_stop = 0; // Go by default.
 
-var iterations = 5; // # of steps per g_frame_mod. increase this to see results quickly.
+var iterations = 1; // # of steps per g_frame_mod. increase this to see results quickly.
 
 var g_bot = { dir:ANTLEFT, x:g_canvas.wid/2, y:g_canvas.hgt/2, color:"#fff" }; // Dir is 0..7 clock, w 0 up.
 
@@ -63,7 +63,7 @@ function draw_bot() {
 */
 
 function move_bot() {
-	var state = get_state(g_bot.x, g_bot.y);
+	var state = get_state(g_bot.x, g_bot.y); //Get the hex color at current bot position
 		
 	if (state == null) return;
 	
@@ -127,6 +127,10 @@ function move_forward() {
     let y = (dy + g_bot.y + ch) % ch;	
 	g_bot.x = x; // Update bot x.
     g_bot.y = y;
+	fill(0,0);
+	stroke("#fff");
+	let sz = g_canvas.cell_size;
+	rect(1+g_bot.x * sz, 1+g_bot.y * sz, sz, sz);
 	
 	//console.log("move_forward: " + g_bot.x + " "+ g_bot.y);
 }
@@ -139,6 +143,7 @@ function update_cell(x, y, index) {
 	var imod = (index + 1) % 3; //% cellColors.length;
 	
 	fill(cellColors[imod][0]);
+	stroke("#000");
 	rect(rectX, rectY, sz, sz);
 	
 	//console.log("update_call: " + x + " " + y + " " + rectX + " " + rectY);
