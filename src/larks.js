@@ -95,10 +95,7 @@ function move_bot() {
 		}
 		case COUNTDOWN: {
 			if (g_bot.counter == 0) g_bot.mode = LR;
-			else {
-				move_forward();
-				--g_bot.counter;
-			}
+			else --g_bot.counter;
 			break;
 		}
 	}
