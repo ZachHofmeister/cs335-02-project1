@@ -141,9 +141,9 @@ function move_forward() {
 	let dx = 0;
     let dy = 0;
     switch (g_bot.dir) { // Convert dir to x,y deltas: dir = clock w 0=Up,2=Rt,4=Dn,6=Left.
-    case ANTUP : 	{  dy = -1; break; }
+    case ANTUP : 	{  dy = 1; break; }
     case ANTRIGHT : { dx = 1; break; }
-    case ANTDOWN : { dy = 1; break; }
+    case ANTDOWN : { dy = -1; break; }
     case ANTLEFT : { dx = -1; break; }
     }
     let cw = g_canvas.wid;// - 1;
