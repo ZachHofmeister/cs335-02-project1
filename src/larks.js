@@ -15,7 +15,7 @@ const COUNTDOWN = 2;
 // different variations of cellColors you can play with.
 // the first one is mentioned in the project pdf, where the professor covers how the TP multi-color ant works.
 // const cellColors = [["#5555cc",0],["#55cc55",1],["#cc5555",1]]; //B (right), G (left), R(left)
-const cellColors = [[BLACK, 1], [RED, 0], [YELLOW, 2], [BLUE, 1]]; // Trinary color system mentioned in instructions.  Left, Right, Straight, Left
+const cellColors = [[BLUE, 1], [YELLOW, 2], [RED, 0], [BLACK, 1]]; // Trinary color system mentioned in instructions.  Left, Right, Straight, Left
 //const cellColors = [["#5555cc",0],["#55cc55",0],["#cc5555",1]];
 //const cellColors = [["#5555cc",1],["#55cc55",0],["#cc5555",0]];
 //const cellColors = [["#5555cc",1],["#55cc55",1],["#cc5555",0]]; // similar to langton's ant "traffic"
@@ -40,7 +40,7 @@ function setup() // P5 Setup Fcn
     height = sz * g_canvas.hgt;
     createCanvas( width, height );  // Make a P5 canvas.
 	
-	background(cellColors[0][0]); // set canvas to blue (default cell color)
+	background(cellColors[3][0]); // set canvas to blue (default cell color)
 }
 
 function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
