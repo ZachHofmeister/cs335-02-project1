@@ -12,65 +12,50 @@ const LR = 0;
 const SET_COUNT = 1;
 const COUNTDOWN = 2;
 
+const cellColors = [[BLUE, 1], [YELLOW, 2], [RED, 0], [BLACK, 1]]; // Trinary color system outlined in instructions.  Left, Right, Straight, Left
 // different variations of cellColors you can play with.
 // the first one is mentioned in the project pdf, where the professor covers how the TP multi-color ant works.
 // const cellColors = [["#5555cc",0],["#55cc55",1],["#cc5555",1]]; //B (right), G (left), R(left)
-const cellColors = [[BLUE, 1], [YELLOW, 2], [RED, 0], [BLACK, 1]]; // Trinary color system mentioned in instructions.  Left, Right, Straight, Left
-//const cellColors = [["#5555cc",0],["#55cc55",0],["#cc5555",1]];
-//const cellColors = [["#5555cc",1],["#55cc55",0],["#cc5555",0]];
-//const cellColors = [["#5555cc",1],["#55cc55",1],["#cc5555",0]]; // similar to langton's ant "traffic"
-//const cellColors = [["#5555cc",1],["#55cc55",0],["#cc5555",1]];
+// const cellColors = [["#5555cc",0],["#55cc55",0],["#cc5555",1]];
+// const cellColors = [["#5555cc",1],["#55cc55",0],["#cc5555",0]];
+// const cellColors = [["#5555cc",1],["#55cc55",1],["#cc5555",0]]; // similar to langton's ant "traffic"
+// const cellColors = [["#5555cc",1],["#55cc55",0],["#cc5555",1]];
 
-var g_canvas = { cell_size:10, wid:90, hgt:90 }; // JS Global var, w canvas size info.
+var g_canvas = { cell_size:10, wid:60, hgt:40 }; // JS Global var, w canvas size info.
 var g_frame_cnt = 0; // Setup a P5 display-frame counter, to do anim
-var g_frame_mod = 10; // Update every 'mod' frames.
+var g_frame_mod = 1; // Update every 'mod' frames.
 var g_stop = 0; // Go by default.
+var g_showAnt = 0; //Hidden by default
 
 var iterations = 1; // # of steps per g_frame_mod. increase this to see results quickly.
 
-var g_bot = { dir:ANTLEFT, x:g_canvas.wid/2, y:g_canvas.hgt/2, color:"#fff", mode:LR, counter:0}; // Dir is 0..7 clock, w 0 up.
+var g_bot = {dir:ANTUP, x:g_canvas.wid/2, y:g_canvas.hgt/2, color:"#fff", mode:LR, counter:0}; // Dir is 0..7 clock, w 0 up.
 
 var width;
 var height;
 
-function setup() // P5 Setup Fcn
-{	
+function setup() { // P5 Setup Fcn
     var sz = g_canvas.cell_size;
     width = sz * g_canvas.wid;  // Our 'canvas' uses cells of given size, not 1x1 pixels.
     height = sz * g_canvas.hgt;
     createCanvas( width, height );  // Make a P5 canvas.
-	
-	background(cellColors[3][0]); // set canvas to blue (default cell color)
+	background(cellColors[3][0]); // set canvas to black (default cell color)
 }
 
-function draw()  // P5 Frame Re-draw Fcn, Called for Every Frame.
-{
+function draw() { // P5 Frame Re-draw Fcn, Called for Every Frame.	
     ++g_frame_cnt;
-    if (0 == g_frame_cnt % g_frame_mod)
-    {
+	//The following two lines give output similar to the first 30 moves example txt. MAKE SURE iterations and g_frame_mod both = 1
+	// let tempState = get_state(g_bot.x, g_bot.y);
+	// console.log(` #${g_frame_cnt} {p=${g_bot.x},${g_bot.y} d=${g_bot.dir} m=${g_bot.mode} i=${g_bot.counter}}; {c=${tempState[0]} t=${tempState[1]}}`);
+
+    if (0 == g_frame_cnt % g_frame_mod) {
         if (!g_stop) draw_update();
     }
 }
 
-function draw_update()
-{
+function draw_update() {
 	for (var i = 0; i < iterations; i++) move_bot();
-	
-	// not compatible with current implementation, since i'm grabbing pixel's value rather than a value from an array (like langton.js).
-	// would need to have a cell array that's independent of canvas in order for draw_bot to function properly.
-	//draw_bot();
 }
-
-/*
-function draw_bot() {
-	let sz = g_canvas.cell_size;
-    let x = 1+ g_bot.x*sz; // Set x one pixel inside the sz-by-sz cell.
-    let y = 1+ g_bot.y*sz;
-	
-    fill( g_bot.color ); // Concat string, auto-convert the number to string.
-    rect( x, y, sz, sz );
-}
-*/
 
 function move_bot() {
 	var state = get_state(g_bot.x, g_bot.y); //Get the hex color at current bot position
@@ -153,7 +138,8 @@ function move_forward() {
 	g_bot.x = x; // Update bot x.
     g_bot.y = y;
 	fill(0,0);
-	stroke("#fff");
+	if (g_showAnt) stroke(g_bot.color);
+	else stroke("#000");
 	let sz = g_canvas.cell_size;
 	rect(1+g_bot.x * sz, 1+g_bot.y * sz, sz, sz);
 	
@@ -173,3 +159,29 @@ function update_cell(x, y, index) {
 	
 	//console.log("update_call: " + x + " " + y + " " + rectX + " " + rectY);
 }
+
+function keyPressed() {
+	// console.log(`keyPressed: ${keyCode}`);
+    if (keyCode == 32) g_stop = !g_stop; //Spacebar pause
+	if (key = 'a') g_showAnt = !g_showAnt; //a key show/hide ant positon
+}
+
+// function mousePressed( )
+// {
+//     let x = mouseX;
+//     let y = mouseY;
+//     //console.log( "mouse x,y = " + x + "," + y );
+//     let sz = g_canvas.cell_size;
+//     let gridx = round( (x-0.5) / sz );
+//     let gridy = round( (y-0.5) / sz );
+//     //console.log( "grid x,y = " + gridx + "," + gridy );
+//     //console.log( "box wid,hgt = " + g_box.wid + "," + g_box.hgt );
+//     g_bot.x = gridx + g_box.wid; // Ensure its positive.
+//     //console.log( "bot x = " + g_bot.x );
+//     g_bot.x %= g_box.wid; // Wrap to fit box.
+//     g_bot.y = gridy + g_box.hgt;
+//     //console.log( "bot y = " + g_bot.y );
+//     g_bot.y %= g_box.hgt;
+//     //console.log( "bot x,y = " + g_bot.x + "," + g_bot.y );
+//     draw_bot( );
+// }
