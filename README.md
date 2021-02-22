@@ -1,6 +1,6 @@
 CPSC 335-02 Project 1 - Larks Ant
-
-Members: Zach Hofmeister, Youssef Chahine, Jonathan Hana
+Team Name: YZJ
+	Members: Youssef Chahine, Zach Hofmeister, Jonathan Hana
 
 Intro
 
@@ -15,15 +15,17 @@ Intro
 	You also do not need to worry about building it, it will simply just run after any code changes.
 	You do however need to refresh the page if you make any code changes while the page is open, in order to see active changes.
 	
-	This was programmed in HTML and JavaScript, and the library used is P5.js for drawing on the canvas.
+	This was programmed in HTML and JavaScript, and the library P5.js is used for drawing on the canvas.
 	If you'd like to know more about these technologies, visit the following links:
 		HTML: https://en.wikipedia.org/wiki/HTML
 		JavaScript: https://en.wikipedia.org/wiki/JavaScript
 		P5.js https://p5js.org/
 
-Zip Contents
+Files
 
-	readme.txt - This file.
+	readme.md - This file.
+
+	README.txt - Documentation submitted to the professor.
 	
 	src/larks.html - Run this file by either double clicking on it, or drag-and-drop it onto your preferred browser.
 	

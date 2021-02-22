@@ -1,6 +1,6 @@
 CPSC 335-02 Project 1 - Larks Ant
-
-Members: Zach Hofmeister, Youssef Chahine, Jonathan Hana
+Team Name: YZJ
+	Members: Youssef Chahine, Zach Hofmeister, Jonathan Hana
 
 Intro
 
@@ -15,7 +15,7 @@ Intro
 	You also do not need to worry about building it, it will simply just run after any code changes.
 	You do however need to refresh the page if you make any code changes while the page is open, in order to see active changes.
 	
-	This was programmed in HTML and JavaScript, and the library used is P5.js for drawing on the canvas.
+	This was programmed in HTML and JavaScript, and the library P5.js is used for drawing on the canvas.
 	If you'd like to know more about these technologies, visit the following links:
 		HTML: https://en.wikipedia.org/wiki/HTML
 		JavaScript: https://en.wikipedia.org/wiki/JavaScript
@@ -23,26 +23,13 @@ Intro
 
 Zip Contents
 
-	readme.txt - This file.
+	README.txt - This file.
 	
 	src/larks.html - Run this file by either double clicking on it, or drag-and-drop it onto your preferred browser.
 	
 	src/larks.js - The JavaScript file that contains the code for the Larks Ant algorithm.
 	
 	src/p5.js - The library file used for drawing.
-	
-	demos - A folder that contains demos for TP's Ant and Langton's Ant, used for learning purposes as well as a base for writing the Larks algorithm.
-		This folder is not necessary for Larks to run. You can delete this if you'd like.
-	
-	js-p5-example - The example project that was given to us by the professor in order to use as a starter.
-		Used as a structure in order to remove the tediousness of having to re-write code not relevant to the algorithm.
-		This file is not necessary for Larks to run. You can delete this if you'd like.
-
-	335-p1-cella-larks-ant.pdf - Instructions provided to us by the professor on what Larks Ant is and how to implement it.
-		This file is not necessary for Larks to run. You can delete this if you'd like.
-	
-	first-30-moves-example.txt - Sample debug log from the professor to compare with our implementation of Larks Ant to determine if we've done it correctly or not.
-		This file is not necessary for Larks to run. You can delete this if you'd like.
 
 Bugs
 

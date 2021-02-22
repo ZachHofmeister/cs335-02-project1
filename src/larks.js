@@ -1,3 +1,11 @@
+//CS335-02 Project 1 - Team YZJ
+//Authors: 
+//	Youssef Chahine	- ykchahine@csu.fullerton.edu
+//	Zach Hofmeister	- zachhof@csu.fullerton.edu
+//	Jonathan Hana	- hanaj97@csu.fullerton.edu
+//File Name: larks.js
+//File Description: Contains the source code for the larks ant implimentation.
+
 const ANTUP = 0;
 const ANTRIGHT = 1;
 const ANTDOWN = 2;
